@@ -1,7 +1,7 @@
-import CommandErrorFactory from '@/app/modules/missions/application/CommandErrorFactory';
-import PostMissionPolicy from '@/app/modules/missions/entities/PostMissionPolicy';
-import Mission from '@/app/modules/missions/entities/Mission';
-import Money from '@/app/modules/missions/entities/Money';
+import Mission from '@/app/modules/board/entities/Mission';
+import Money from '@/app/modules/board/valueObjects/Money';
+import PostMissionPolicy from '@/app/modules/board/valueObjects/PostMissionPolicy';
+import CommandErrorFactory from '@/app/modules/board/valueObjects/CommandErrorFactory';
 
 class MissionService {
   constructor(missionsRepository) {

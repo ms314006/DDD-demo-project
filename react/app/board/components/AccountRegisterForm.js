@@ -1,8 +1,8 @@
 'use client'
 import { useState } from 'react';
-import CommandErrorFactory from '@/app/modules/missions/application/CommandErrorFactory';
+import CommandErrorFactory from '@/app/modules/board/valueObjects/CommandErrorFactory';
 
-export default ({ onRegisterAccountByName }) => {
+const AccountRegisterForm = ({ onRegisterAccountByName }) => {
   const [accountName, setAccountName] = useState('');
   const submitAccountName = async () => {
     try {
@@ -32,3 +32,5 @@ export default ({ onRegisterAccountByName }) => {
     </div>
   );
 };
+
+export default AccountRegisterForm;

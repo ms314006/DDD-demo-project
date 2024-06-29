@@ -1,15 +1,15 @@
 'use client'
-import useMissionsViewModel from "@/app/missions/hooks/useMissionsViewModel";
-import MissionSystem from '@/app/missions/components/MissionSystem';
-import AccountRegisterForm from '@/app/missions/components/AccountRegisterForm';
+import getBoardViewModel from "@/app/board/getBoardViewModel";
+import MissionSystem from '@/app/board/components/MissionSystem';
+import AccountRegisterForm from '@/app/board/components/AccountRegisterForm';
 
-export default () => {
+const BoardScreen = ({ getBoardViewModel }) => {
   const {
     account,
     missions,
     handlePostMission,
     handleRegisterAccountByName,
-  } = useMissionsViewModel();
+  } = getBoardViewModel();
 
   return (
     <div className="p-6">
@@ -29,3 +29,8 @@ export default () => {
     </div>
   );
 };
+
+// eslint-disable-next-line import/no-anonymous-default-export, react/display-name
+export default () => (
+  <BoardScreen getBoardViewModel={getBoardViewModel} />
+);

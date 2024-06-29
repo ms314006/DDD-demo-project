@@ -1,10 +1,10 @@
 'use client'
 import { useState } from 'react';
-import MissionForm from '@/app/missions/components/MissionForm';
-import MissionTable from '@/app/missions/components/MissionTable';
-import CommandErrorFactory from '@/app/modules/missions/application/CommandErrorFactory';
+import MissionForm from '@/app/board/components/MissionForm';
+import MissionTable from '@/app/board/components/MissionTable';
+import CommandErrorFactory from '@/app/modules/board/valueObjects/CommandErrorFactory';
 
-export default ({ account, missions, onPostMission }) => {
+const MissionSystem = ({ account, missions, onPostMission }) => {
   const [postMissionFormVisible, setPostMissionFormVisible] = useState(false);
   const openPostMissionForm = () => setPostMissionFormVisible(true);
   const closePostMissionForm = () => setPostMissionFormVisible(false);
@@ -52,3 +52,5 @@ export default ({ account, missions, onPostMission }) => {
     </div>
   );
 };
+
+export default MissionSystem;

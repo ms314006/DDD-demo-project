@@ -1,0 +1,22 @@
+import accountsApis from '@/app/apis/accounts';
+import AccountsMapper from '@/app/modules/board/repositories/AccountsMapper';
+
+class AccountRepository {
+  async getAccountByName(accountName) {
+    const accounts = await  accountsApis.getAccounts();
+    const account = accounts
+      .find(({ name }) => name === accountName);
+    if (account) {
+      return AccountsMapper.toDomain(account);
+    }
+    return null;
+  }
+
+  async registerAccount(account) {
+    const persistedAccount = AccountsMapper.toPersistence(account);
+    await accountsApis.registerAccount(persistedAccount);
+    return AccountsMapper.toDomain(persistedAccount);
+  }
+};
+
+export default AccountRepository;

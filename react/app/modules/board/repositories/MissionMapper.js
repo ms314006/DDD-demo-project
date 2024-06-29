@@ -1,5 +1,5 @@
-import Mission from '@/app/modules/missions/entities/Mission';
-import Money from '@/app/modules/missions/entities/Money';
+import Mission from '@/app/modules/board/entities/Mission';
+import Money from '@/app/modules/board/valueObjects/Money';
 
 class MissionMapper {
   static toDomain(raw) {

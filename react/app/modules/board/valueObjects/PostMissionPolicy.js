@@ -1,4 +1,4 @@
-class AccountNamePolicy {
+class PostMissionPolicy {
   constructor(account, mission) {
     this.account = account;
     this.mission = mission;
@@ -13,4 +13,4 @@ class AccountNamePolicy {
   }
 }
 
-export default AccountNamePolicy;
+export default PostMissionPolicy;

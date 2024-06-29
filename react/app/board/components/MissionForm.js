@@ -1,8 +1,7 @@
 'use client'
 import { useState } from 'react';
-import useMissionsViewModel from "@/app/missions/hooks/useMissionsViewModel";
 
-export default ({ onConfirm, onCancel }) => {
+const MissionForm = ({ onConfirm, onCancel }) => {
   const initiallyMission = { title: '', cost: 0, reward: 0 };
   const [missionFields, setMissionFields] = useState(initiallyMission);
   const handleResetMissionFields = () => {
@@ -66,3 +65,5 @@ export default ({ onConfirm, onCancel }) => {
     </div>
   );
 };
+
+export default MissionForm;

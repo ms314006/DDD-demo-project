@@ -1,4 +1,4 @@
-export default ({ missions }) => {
+const MissionTable = ({ missions }) => {
   return (
     <table>
       <thead>
@@ -28,3 +28,5 @@ export default ({ missions }) => {
     </table>
   );
 };
+
+export default MissionTable;
