@@ -27,7 +27,7 @@ class CancelMission {
     const cancelMissionCost = new CancelMissionCostCalculator().value;
     const account = await this.accountRepository
       .getAccountByName(mission.creator);
-    account.topUpBalance(mission.rewardAmount - cancelMissionCost);
+    account.increaseBalance(mission.rewardAmount - cancelMissionCost);
     await this.accountRepository.saveAccount(account);
   }
 }

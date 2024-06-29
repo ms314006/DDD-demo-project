@@ -2,7 +2,10 @@ import MissionService from "@/app/modules/board/services/MissionService";
 
 class PostMission {
   constructor(missionsRepository, accountRepository) {
-    this.missionService = new MissionService(missionsRepository);
+    this.missionService = new MissionService(
+      missionsRepository,
+      accountRepository,
+    );
     this.missionsRepository = missionsRepository;
     this.accountRepository = accountRepository;
   }

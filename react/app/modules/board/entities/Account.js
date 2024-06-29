@@ -1,3 +1,5 @@
+import DecreaseAccountBalancePolicy from "@/app/modules/board/valueObjects/DecreaseAccountBalancePolicy";
+
 class Account {
   constructor(name, balance) {
     this.name = name;
@@ -8,8 +10,15 @@ class Account {
     return this.balance.amount;
   }
 
-  topUpBalance(amount) {
-    this.balance = this.balance.topUp(amount);
+  increaseBalance(amount) {
+    this.balance = this.balance.increase(amount);
+  }
+
+  decreaseBalance(amount) {
+    if (new DecreaseAccountBalancePolicy(this, amount).isAllow) {
+      throw new Error('Have no enough balance amount.');
+    }
+    this.balance = this.balance.decrease(amount);
   }
 }
 

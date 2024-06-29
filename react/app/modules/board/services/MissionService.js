@@ -4,8 +4,9 @@ import PostMissionPolicy from '@/app/modules/board/valueObjects/PostMissionPolic
 import CommandErrorFactory from '@/app/modules/board/valueObjects/CommandErrorFactory';
 
 class MissionService {
-  constructor(missionsRepository) {
+  constructor(missionsRepository, accountRepository) {
     this.missionsRepository = missionsRepository;
+    this.accountRepository = accountRepository;
   }
 
   async postMission(account, mission) {
@@ -16,7 +17,9 @@ class MissionService {
     if (postMissionPolicy.isEmptyTitle) {
       CommandErrorFactory.throwInvalidMissionTitleError();
     }
-  
+
+    account.decreaseBalance(mission.rewardAmount);
+    await this.accountRepository.saveAccount(account);
     const postedMission = await this.missionsRepository
       .postMission(mission);
     return postedMission;

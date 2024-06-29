@@ -3,8 +3,12 @@ class Money {
     this.amount = amount;
   }
 
-  topUp(topUpAmount) {
-    return new Money(this.amount + topUpAmount);
+  increase(amount) {
+    return new Money(this.amount + amount);
+  }
+
+  decrease(amount) {
+    return new Money(this.amount - amount);
   }
 }
 
