@@ -23,6 +23,7 @@ class Mission {
       TAKEN: 'TAKEN',
       FINISHED: 'FINISHED',
       CANCELED: 'CANCELED',
+      SUBMITTED_FINISH: 'SUBMITTED_FINISH',
     };
   }
 
@@ -46,6 +47,10 @@ class Mission {
   commitToWaitingForTake() {
     this.status = Mission.getStatuses().WAITING_FOR_TAKE;
     this.recipient = null;
+  }
+
+  commitToSubmitFinish() {
+    this.status = Mission.getStatuses().SUBMITTED_FINISH;
   }
 }
 

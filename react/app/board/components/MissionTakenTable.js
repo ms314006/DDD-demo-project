@@ -12,6 +12,7 @@ const MissionTakenTable = ({
             <th>標題</th>
             <th>接取費用</th>
             <th>完成報酬</th>
+            <th>狀態</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -29,14 +30,19 @@ const MissionTakenTable = ({
                   { mission.reward }
                 </td>
                 <td className="text-center">
+                  { mission.status }
+                </td>
+                <td className="text-center">
                   <button
                     className="mx-1"
+                    disabled={!mission.isControllable}
                     onClick={() => onAbandonMission(mission.id)}
                   >
                     放棄
                   </button>
                   <button
                     className="mx-1"
+                    disabled={!mission.isControllable}
                     onClick={() => onSubmitFinishMission(mission.id)}
                   >
                     提交完成

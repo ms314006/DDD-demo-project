@@ -12,6 +12,7 @@ const BoardScreen = ({ getBoardViewModel }) => {
     handleCancelMission,
     handleTakeMission,
     handleAbandonMission,
+    handleSubmitFinishMission,
     handleRegisterAccount,
   } = getBoardViewModel();
 
@@ -28,6 +29,7 @@ const BoardScreen = ({ getBoardViewModel }) => {
             onCancelMission={handleCancelMission}
             onTakeMission={handleTakeMission}
             onAbandonMission={handleAbandonMission}
+            onSubmitFinishMission={handleSubmitFinishMission}
           />
         ) : (
           <AccountRegisterForm

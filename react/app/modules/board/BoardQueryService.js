@@ -25,6 +25,13 @@ class BoardQueryService {
     const missions = await missionsApis.getMissions();
     return missions
       .filter((mission) => (mission.recipient === accountName))
+      .map((mission) => ({
+        ...mission,
+        status: mission.status === Mission.getStatuses().SUBMITTED_FINISH
+          ? '確認結果中'
+          : '任務執行中',
+        isControllable: mission.status === Mission.getStatuses().TAKEN
+      }));
   }
 }
 
