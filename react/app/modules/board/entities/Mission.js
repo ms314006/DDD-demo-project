@@ -52,6 +52,11 @@ class Mission {
       new MissionTaken(this.id)
     );
   }
+
+  commitToWaitingForTake() {
+    this.status = Mission.getStatuses().WAITING_FOR_TAKE;
+    this.recipient = null;
+  }
 }
 
 export default Mission;
