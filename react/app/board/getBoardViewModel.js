@@ -4,12 +4,14 @@ import AccountRepository from "@/app/modules/board/repositories/AccountRepositor
 import MissionRepository from "@/app/modules/board/repositories/MissionRepository";
 import PostMission from "@/app/modules/board/commands/PostMission";
 import CancelMission from "@/app/modules/board/commands/CancelMission";
+import TakeMission from "@/app/modules/board/commands/TakeMission";
 import RegisterAccount from "@/app/modules/board/commands/RegisterAccount";
 
 const useMissionsViewModel = (
   boardQueryService,
   postMission,
   cancelMission,
+  takeMission,
   registerAccount,
 ) => {
   const [account, setAccount] = useState(null);
@@ -35,6 +37,10 @@ const useMissionsViewModel = (
       await cancelMission.execute(missionId);
       refetchViewInfo();
     },
+    handleTakeMission: async (missionId) => {
+      await takeMission.execute(account, missionId);
+      refetchViewInfo();
+    },
     handleRegisterAccount: async (accountName) => {
       await registerAccount.execute(accountName);
       setAccount(await boardQueryService.getAccountByName(accountName));
@@ -51,5 +57,6 @@ export default () => useMissionsViewModel(
   new BoardQueryService(),
   new PostMission(new MissionRepository(), new AccountRepository()),
   new CancelMission(new MissionRepository(), new AccountRepository()),
+  new TakeMission(new MissionRepository(), new AccountRepository()),
   new RegisterAccount(new AccountRepository()),
 );

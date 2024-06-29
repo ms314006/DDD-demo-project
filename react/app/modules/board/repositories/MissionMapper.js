@@ -10,6 +10,7 @@ class MissionMapper {
       new Money(raw.cost),
       new Money(raw.reward),
       raw.creator,
+      raw.recipient,
     );
   }
   
@@ -21,6 +22,7 @@ class MissionMapper {
       cost: mission.costAmount,
       reward: mission.rewardAmount,
       creator: mission.creator,
+      recipient: mission.recipient,
     };
   }
 }

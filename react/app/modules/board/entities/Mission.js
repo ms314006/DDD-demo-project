@@ -1,5 +1,6 @@
 import domainEventPublisher from "@/app/modules/DomainEventPublisher";
 import MissionCanceled from "@/app/modules/board/domainEvents/MissionCanceled";
+import MissionTaken from "@/app/modules/board/domainEvents/MissionTaken";
 
 class Mission {
   constructor(
@@ -9,6 +10,7 @@ class Mission {
     cost,
     reward,
     creator,
+    recipient,
   ) {
     this.id = id;
     this.title = title;
@@ -16,6 +18,7 @@ class Mission {
     this.cost = cost;
     this.reward = reward;
     this.creator = creator;
+    this.recipient = recipient;
   }
 
   static getStatuses() {
@@ -39,6 +42,14 @@ class Mission {
     this.status = Mission.getStatuses().CANCELED;
     domainEventPublisher.publish(
       new MissionCanceled(this.id)
+    );
+  }
+
+  commitToTakenByAccount(account) {
+    this.status = Mission.getStatuses().TAKEN;
+    this.recipient = account.name;
+    domainEventPublisher.publish(
+      new MissionTaken(this.id)
     );
   }
 }

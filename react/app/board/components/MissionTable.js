@@ -1,4 +1,8 @@
-const MissionTable = ({ missions, onCancelMission }) => {
+const MissionTable = ({
+  missions,
+  onCancelMission,
+  onTakeMission,
+}) => {
   return (
     <table>
       <thead>
@@ -35,7 +39,12 @@ const MissionTable = ({ missions, onCancelMission }) => {
                 }
                 {
                   mission.isTakable && (
-                    <button className="mx-1">接取</button>
+                    <button
+                      className="mx-1"
+                      onClick={() => onTakeMission(mission.id)}
+                    >
+                      接取
+                    </button>
                   )
                 }
               </td>

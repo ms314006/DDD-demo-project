@@ -9,6 +9,7 @@ const MissionSystem = ({
   missions,
   onPostMission,
   onCancelMission,
+  onTakeMission,
 }) => {
   const [postMissionFormVisible, setPostMissionFormVisible] = useState(false);
   const openPostMissionForm = () => setPostMissionFormVisible(true);
@@ -55,6 +56,7 @@ const MissionSystem = ({
         <MissionTable
           missions={missions}
           onCancelMission={onCancelMission}
+          onTakeMission={onTakeMission}
         />
       </div>
     </div>
