@@ -1,5 +1,3 @@
-import domainEventPublisher from "@/app/modules/DomainEventPublisher";
-import MissionCanceled from "@/app/modules/board/domainEvents/MissionCanceled";
 import CancelMissionCostCalculator from "@/app/modules/board/valueObjects/CancelMissionCostCalculator";
 
 class CancelMission {
@@ -9,25 +7,16 @@ class CancelMission {
   }
 
   async execute(missionId) {
-    domainEventPublisher.reset();
-    domainEventPublisher.subscribe(
-      MissionCanceled,
-      this.onMissionCanceled.bind(this),
-    );
-
     const mission = await this.missionsRepository
       .getMissionById(missionId);
     mission.commitToCancel();
-    await this.missionsRepository.saveMission(mission);
-  }
 
-  async onMissionCanceled(domainEvent) {
-    const mission = await this.missionsRepository
-      .getMissionById(domainEvent.missionId);
     const cancelMissionCost = new CancelMissionCostCalculator().value;
     const account = await this.accountRepository
       .getAccountByName(mission.creator);
     account.increaseBalance(mission.rewardAmount - cancelMissionCost);
+
+    await this.missionsRepository.saveMission(mission);
     await this.accountRepository.saveAccount(account);
   }
 }

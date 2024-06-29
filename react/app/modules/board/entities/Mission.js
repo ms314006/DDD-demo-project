@@ -1,7 +1,3 @@
-import domainEventPublisher from "@/app/modules/DomainEventPublisher";
-import MissionCanceled from "@/app/modules/board/domainEvents/MissionCanceled";
-import MissionTaken from "@/app/modules/board/domainEvents/MissionTaken";
-
 class Mission {
   constructor(
     id,
@@ -40,17 +36,11 @@ class Mission {
 
   commitToCancel() {
     this.status = Mission.getStatuses().CANCELED;
-    domainEventPublisher.publish(
-      new MissionCanceled(this.id)
-    );
   }
 
   commitToTakenByAccount(account) {
     this.status = Mission.getStatuses().TAKEN;
     this.recipient = account.name;
-    domainEventPublisher.publish(
-      new MissionTaken(this.id)
-    );
   }
 
   commitToWaitingForTake() {
