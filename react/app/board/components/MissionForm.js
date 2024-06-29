@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react';
+import CommandErrorFactory from '@/app/modules/board/valueObjects/CommandErrorFactory';
 
 const MissionForm = ({ onConfirm, onCancel }) => {
   const initiallyMission = { title: '', cost: 0, reward: 0 };
@@ -17,8 +18,21 @@ const MissionForm = ({ onConfirm, onCancel }) => {
   };
 
   const handleConfirm = async () => {
-    await onConfirm(missionFields);
-    handleCancel();
+    try {
+      await onConfirm(missionFields);
+    } catch (e) {
+      switch (e.message) {
+        case CommandErrorFactory.getErrorMessages().NOT_ENOUGH_MONEY_TO_PAY_REWARD:
+          alert('擁有的金錢不足以支付獎金');
+          break;
+        case CommandErrorFactory.getErrorMessages().INVALID_MISSION_TITLE:
+          alert('輸入的任務標題不得為空白');
+          break;
+        default:
+          alert('未知錯誤');
+          break;
+      }
+    }
   }
 
   return (

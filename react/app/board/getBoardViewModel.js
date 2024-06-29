@@ -47,7 +47,7 @@ const useMissionsViewModel = (
       refetchViewInfo();
     },
     handleTakeMission: async (missionId) => {
-      await takeMission.execute(account, missionId);
+      await takeMission.execute(account.name, missionId);
       refetchViewInfo();
     },
     handleRegisterAccount: async (accountName) => {

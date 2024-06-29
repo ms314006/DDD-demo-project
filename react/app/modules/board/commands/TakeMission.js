@@ -1,5 +1,6 @@
 import domainEventPublisher from "@/app/modules/DomainEventPublisher";
 import MissionTaken from "@/app/modules/board/domainEvents/MissionTaken";
+import CommandErrorFactory from "@/app/modules/board/valueObjects/CommandErrorFactory";
 
 class TakeMission {
   constructor(missionsRepository, accountRepository) {
@@ -7,7 +8,7 @@ class TakeMission {
     this.accountRepository = accountRepository;
   }
 
-  async execute(account, missionId) {
+  async execute(accountName, missionId) {
     domainEventPublisher.reset();
     domainEventPublisher.subscribe(
       MissionTaken,
@@ -16,6 +17,12 @@ class TakeMission {
 
     const mission = await this.missionsRepository
       .getMissionById(missionId);
+    const account = await this.accountRepository
+      .getAccountByName(accountName);
+    console.log({ account, mission });
+    if (account.balanceAmount < mission.costAmount) {
+      CommandErrorFactory.throwNotEnoughMoneyToTakeMissionError();
+    }
     mission.commitToTakenByAccount(account);
     await this.missionsRepository.saveMission(mission);
   }

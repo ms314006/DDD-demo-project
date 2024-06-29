@@ -4,6 +4,7 @@ class CommandErrorFactory {
       INVALID_ACCOUNT_NAME: 'Invalid account name!',
       INVALID_MISSION_TITLE: 'Invalid mission title!',
       NOT_ENOUGH_MONEY_TO_PAY_REWARD: 'Not enough money to pay reward!',
+      NOT_ENOUGH_MONEY_TO_TAKE_MISSION: 'Not enough money to take mission!',
     }
   }
 
@@ -22,6 +23,12 @@ class CommandErrorFactory {
   static throwNotEnoughMoneyToPayRewardError() {
     throw new Error(
       CommandErrorFactory.getErrorMessages().NOT_ENOUGH_MONEY_TO_PAY_REWARD
+    );
+  }
+
+  static throwNotEnoughMoneyToTakeMissionError() {
+    throw new Error(
+      CommandErrorFactory.getErrorMessages().NOT_ENOUGH_MONEY_TO_TAKE_MISSION
     );
   }
 }

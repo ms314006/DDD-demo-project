@@ -1,8 +1,25 @@
+import CommandErrorFactory from "@/app/modules/board/valueObjects/CommandErrorFactory";
+
 const WaitingForTakeMissionTable = ({
   missions,
   onCancelMission,
   onTakeMission,
 }) => {
+  const handleTakeMission = async (missionId) => {
+    try {
+      await onTakeMission(missionId);
+    } catch (e) {
+      switch (e.message) {
+        case CommandErrorFactory.getErrorMessages().NOT_ENOUGH_MONEY_TO_TAKE_MISSION:
+          alert('擁有的金錢不足以支付接取任務的費用');
+          break;
+        default:
+          alert('未知錯誤');
+          break;
+      }
+    }
+  }
+
   return (
     <div>
       <h2>等待接取</h2>
@@ -43,7 +60,7 @@ const WaitingForTakeMissionTable = ({
                     mission.isTakable && (
                       <button
                         className="mx-1"
-                        onClick={() => onTakeMission(mission.id)}
+                        onClick={() => handleTakeMission(mission.id)}
                       >
                         接取
                       </button>

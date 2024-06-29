@@ -9,7 +9,7 @@ class PostMissionPolicy {
   }
 
   get notEnoughMoneyToPayReward() {
-    return this.account.moneyAmount < this.mission.rewardAmount
+    return this.account.balanceAmount < this.mission.rewardAmount
   }
 }
 
