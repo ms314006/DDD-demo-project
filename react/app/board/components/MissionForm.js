@@ -20,6 +20,7 @@ const MissionForm = ({ onConfirm, onCancel }) => {
   const handleConfirm = async () => {
     try {
       await onConfirm(missionFields);
+      onCancel();
     } catch (e) {
       switch (e.message) {
         case CommandErrorFactory.getErrorMessages().NOT_ENOUGH_MONEY_TO_PAY_REWARD:
@@ -53,7 +54,7 @@ const MissionForm = ({ onConfirm, onCancel }) => {
           type="number"
           value={missionFields.cost}
           onInput={({ target: { value } }) => {
-            handleSetMissionFields({ cost: value });
+            handleSetMissionFields({ cost: Number(value) });
           }}
         />
       </div>
@@ -63,7 +64,7 @@ const MissionForm = ({ onConfirm, onCancel }) => {
           type="number"
           value={missionFields.reward}
           onInput={({ target: { value } }) => {
-            handleSetMissionFields({ reward: value });
+            handleSetMissionFields({ reward: Number(value) });
           }}
         />
       </div>
