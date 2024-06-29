@@ -52,7 +52,6 @@ const useMissionsViewModel = (
     waitingForTakeMissions: waitingForTakeMissions,
     missionsTaken,
     missionsIsTaken,
-    alreadyTakenMissions: [],
     handlePostMission: async (missionToBePost) => {
       await postMission.execute(account.name, missionToBePost);
       refetchViewInfo();
