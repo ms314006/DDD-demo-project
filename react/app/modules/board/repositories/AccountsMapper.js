@@ -5,14 +5,14 @@ class AccountsMapper {
   static toDomain(raw) {
     return new Account(
       raw.name,
-      new Money(raw.money),
+      new Money(raw.balance),
     );
   }
   
   static toPersistence(account) {
     return {
       name: account.name,
-      money: account.moneyAmount,
+      balance: account.balanceAmount,
     };
   }
 }

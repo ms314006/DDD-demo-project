@@ -1,15 +1,15 @@
 class Account {
-  constructor(name, money) {
+  constructor(name, balance) {
     this.name = name;
-    this.money = money;
+    this.balance = balance;
   }
 
-  get moneyAmount() {
-    return this.money.amount;
+  get balanceAmount() {
+    return this.balance.amount;
   }
 
   topUpBalance(amount) {
-    this.money = this.money.topUp(amount);
+    this.balance = this.balance.topUp(amount);
   }
 }
 

@@ -37,7 +37,7 @@ const MissionSystem = ({
       <h1>接任務系統</h1>
       <div>
         <p>{ `使用者：${account.name}` }</p>
-        <p>{ `金錢：${account.money}` }</p>
+        <p>{ `金錢：${account.balance}` }</p>
       </div>
       {
         postMissionFormVisible ? (
