@@ -19,7 +19,6 @@ class TakeMission {
       .getMissionById(missionId);
     const account = await this.accountRepository
       .getAccountByName(accountName);
-    console.log({ account, mission });
     if (account.balanceAmount < mission.costAmount) {
       CommandErrorFactory.throwNotEnoughMoneyToTakeMissionError();
     }
@@ -30,10 +29,14 @@ class TakeMission {
   async onMissionTaken(domainEvent) {
     const mission = await this.missionsRepository
       .getMissionById(domainEvent.missionId);
-    const account = await this.accountRepository
+    const recipient = await this.accountRepository
       .getAccountByName(mission.recipient);
-    account.decreaseBalance(mission.costAmount);
-    await this.accountRepository.saveAccount(account);
+    const creator = await this.accountRepository
+      .getAccountByName(mission.creator);
+    recipient.decreaseBalance(mission.costAmount);
+    creator.increaseBalance(mission.costAmount);
+    await this.accountRepository.saveAccount(recipient);
+    await this.accountRepository.saveAccount(creator);
   }
 }
 
