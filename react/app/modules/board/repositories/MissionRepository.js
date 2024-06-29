@@ -16,6 +16,27 @@ class MissionRepository {
     const missions = await missionsApis.getMissions();
     return missions.map((mission) => (MissionMapper.toDomain(mission)))
   }
+
+  async getMissionById(missionId) {
+    const missions = await missionsApis.getMissions();
+    const mission = missions
+      .map((mission) => (MissionMapper.toDomain(mission)))
+      .find((mission) => mission.id === missionId)
+    if (mission) return mission;
+    return null;
+  }
+
+  async saveMission(mission) {
+    const savePersistedMission = MissionMapper.toPersistence(mission);
+    const missions = await missionsApis.getMissions();
+    return missionsApis.saveMissions(
+      missions.map((existMission) => (
+        existMission.id === savePersistedMission.id
+          ? savePersistedMission
+          : existMission
+      ))
+    );
+  }
 };
 
 export default MissionRepository;

@@ -8,17 +8,20 @@ const BoardScreen = ({ getBoardViewModel }) => {
     account,
     missions,
     handlePostMission,
+    handleCancelMission,
     handleRegisterAccountByName,
   } = getBoardViewModel();
 
   return (
     <div className="p-6">
+      <h1>佈告欄</h1>
       {
         account ? (
           <MissionSystem
             account={account}
             missions={missions}
             onPostMission={handlePostMission}
+            onCancelMission={handleCancelMission}
           />
         ) : (
           <AccountRegisterForm

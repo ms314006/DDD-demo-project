@@ -4,7 +4,12 @@ import MissionForm from '@/app/board/components/MissionForm';
 import MissionTable from '@/app/board/components/MissionTable';
 import CommandErrorFactory from '@/app/modules/board/valueObjects/CommandErrorFactory';
 
-const MissionSystem = ({ account, missions, onPostMission }) => {
+const MissionSystem = ({
+  account,
+  missions,
+  onPostMission,
+  onCancelMission,
+}) => {
   const [postMissionFormVisible, setPostMissionFormVisible] = useState(false);
   const openPostMissionForm = () => setPostMissionFormVisible(true);
   const closePostMissionForm = () => setPostMissionFormVisible(false);
@@ -47,7 +52,10 @@ const MissionSystem = ({ account, missions, onPostMission }) => {
         )
       }
       <div className="mt-4">
-        <MissionTable missions={missions} />
+        <MissionTable
+          missions={missions}
+          onCancelMission={onCancelMission}
+        />
       </div>
     </div>
   );

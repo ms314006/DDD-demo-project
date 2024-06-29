@@ -9,6 +9,7 @@ class MissionMapper {
       raw.status,
       new Money(raw.cost),
       new Money(raw.reward),
+      raw.creator,
     );
   }
   
@@ -19,6 +20,7 @@ class MissionMapper {
       status: mission.status,
       cost: mission.costAmount,
       reward: mission.rewardAmount,
+      creator: mission.creator,
     };
   }
 }

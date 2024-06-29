@@ -1,3 +1,6 @@
+import domainEventPublisher from "@/app/modules/DomainEventPublisher";
+import MissionCanceled from "@/app/modules/board/domainEvents/MissionCanceled";
+
 class Mission {
   constructor(
     id,
@@ -5,12 +8,14 @@ class Mission {
     status,
     cost,
     reward,
+    creator,
   ) {
     this.id = id;
     this.title = title;
     this.status = status;
     this.cost = cost;
     this.reward = reward;
+    this.creator = creator;
   }
 
   static getStatuses() {
@@ -28,6 +33,13 @@ class Mission {
 
   get rewardAmount() {
     return this.reward.amount;
+  }
+
+  commitToCancel() {
+    this.status = Mission.getStatuses().CANCELED;
+    domainEventPublisher.publish(
+      new MissionCanceled(this.id)
+    );
   }
 }
 

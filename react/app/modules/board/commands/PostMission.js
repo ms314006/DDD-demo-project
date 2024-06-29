@@ -14,6 +14,7 @@ class PostMission {
       missionToBePost.title,
       missionToBePost.cost,
       missionToBePost.reward,
+      account.name,
     );
     await this.missionService.postMission(account, mission);
   }

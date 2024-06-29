@@ -1,4 +1,4 @@
-const MissionTable = ({ missions }) => {
+const MissionTable = ({ missions, onCancelMission }) => {
   return (
     <table>
       <thead>
@@ -6,6 +6,7 @@ const MissionTable = ({ missions }) => {
           <th>標題</th>
           <th>接取費用</th>
           <th>完成報酬</th>
+          <th>操作</th>
         </tr>
       </thead>
       <tbody>
@@ -20,6 +21,23 @@ const MissionTable = ({ missions }) => {
               </td>
               <td className="text-center">
                 { mission.reward }
+              </td>
+              <td className="text-center">
+                {
+                  mission.isCancelable && (
+                    <button
+                      className="mx-1"
+                      onClick={() => onCancelMission(mission.id)}
+                    >
+                      撤銷
+                    </button>
+                  )
+                }
+                {
+                  mission.isTakable && (
+                    <button className="mx-1">接取</button>
+                  )
+                }
               </td>
             </tr>
           ))

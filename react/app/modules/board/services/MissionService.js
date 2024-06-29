@@ -22,13 +22,14 @@ class MissionService {
     return postedMission;
   }
 
-  getMissionToBePost(id, title, cost, reward) {
+  getMissionToBePost(id, title, cost, reward, creator) {
     return new Mission(
       id,
       title,
       Mission.getStatuses().WAITING_FOR_TAKE,
       new Money(cost),
       new Money(reward),
+      creator,
     );
   }
 }

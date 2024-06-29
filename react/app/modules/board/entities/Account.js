@@ -7,6 +7,10 @@ class Account {
   get moneyAmount() {
     return this.money.amount;
   }
+
+  topUpBalance(amount) {
+    this.money = this.money.topUp(amount);
+  }
 }
 
 export default Account;

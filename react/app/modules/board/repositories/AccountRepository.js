@@ -17,6 +17,11 @@ class AccountRepository {
     await accountsApis.registerAccount(persistedAccount);
     return AccountsMapper.toDomain(persistedAccount);
   }
+
+  async saveAccount(account) {
+    const persistedAccount = AccountsMapper.toPersistence(account);
+    await accountsApis.saveAccount(persistedAccount);
+  }
 };
 
 export default AccountRepository;
