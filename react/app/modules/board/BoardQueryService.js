@@ -21,33 +21,31 @@ class BoardQueryService {
       }));
   }
 
+  getDisplayMissionStatus(missionStatus) {
+    switch (missionStatus) {
+      case Mission.getStatuses().TAKEN:
+        return '執行中'
+      case Mission.getStatuses().SUBMITTED_FINISH:
+        return '等待確認中'
+      case Mission.getStatuses().FINISHED:
+        return '完成'
+      default:
+        return '';
+    }
+  };
+
   async getMissionsTakenByAccountName(accountName) {
     const missions = await missionsApis.getMissions();
     return missions
       .filter((mission) => (mission.recipient === accountName))
       .map((mission) => ({
         ...mission,
-        status: mission.status === Mission.getStatuses().SUBMITTED_FINISH
-          ? '確認結果中'
-          : '執行中',
+        status: this.getDisplayMissionStatus(mission.status),
         isControllable: mission.status === Mission.getStatuses().TAKEN
       }));
   }
 
   async getMissionsIsTakenByAccountName(accountName) {
-    const getDisplayMissionStatus = (missionStatus) => {
-      switch (missionStatus) {
-        case Mission.getStatuses().TAKEN:
-          return '執行中'
-        case Mission.getStatuses().SUBMITTED_FINISH:
-          return '等待確認中'
-        case Mission.getStatuses().TAKEN:
-          return '完成'
-        default:
-          return '';
-      }
-    };
-
     const missions = await missionsApis.getMissions();
     return missions
       .filter((mission) => (
@@ -60,7 +58,7 @@ class BoardQueryService {
       ))
       .map((mission) => ({
         ...mission,
-        status: getDisplayMissionStatus(mission.status),
+        status: this.getDisplayMissionStatus(mission.status),
         isControllable: mission.status === Mission.getStatuses().SUBMITTED_FINISH
       }));
   }

@@ -52,6 +52,10 @@ class Mission {
   commitToSubmitFinish() {
     this.status = Mission.getStatuses().SUBMITTED_FINISH;
   }
+
+  commitToFinished() {
+    this.status = Mission.getStatuses().FINISHED;
+  }
 }
 
 export default Mission;
