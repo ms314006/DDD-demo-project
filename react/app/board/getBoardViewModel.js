@@ -21,6 +21,7 @@ const useMissionsViewModel = (
   const [account, setAccount] = useState(null);
   const [waitingForTakeMissions, setWaitingForTakeMissions] = useState([]);
   const [missionsTaken, setMissionsTaken] = useState([]);
+  const [missionsIsTaken, setMissionsIsTaken] = useState([]);
   const refetchMissions = async (accountName = account.name) => {
     setWaitingForTakeMissions(
       await boardQueryService
@@ -29,6 +30,10 @@ const useMissionsViewModel = (
     setMissionsTaken(
       await boardQueryService
         .getMissionsTakenByAccountName(accountName)
+    );
+    setMissionsIsTaken(
+      await boardQueryService
+        .getMissionsIsTakenByAccountName(accountName)
     );
   }
   const refetchViewInfo = async () => {
@@ -41,7 +46,8 @@ const useMissionsViewModel = (
   return {
     account,
     waitingForTakeMissions: waitingForTakeMissions,
-    missionsTaken: missionsTaken,
+    missionsTaken,
+    missionsIsTaken,
     alreadyTakenMissions: [],
     handlePostMission: async (missionToBePost) => {
       await postMission.execute(account.name, missionToBePost);

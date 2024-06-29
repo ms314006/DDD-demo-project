@@ -8,6 +8,7 @@ const BoardScreen = ({ getBoardViewModel }) => {
     account,
     waitingForTakeMissions,
     missionsTaken,
+    missionsIsTaken,
     handlePostMission,
     handleCancelMission,
     handleTakeMission,
@@ -25,6 +26,7 @@ const BoardScreen = ({ getBoardViewModel }) => {
             account={account}
             waitingForTakeMissions={waitingForTakeMissions}
             missionsTaken={missionsTaken}
+            missionsIsTaken={missionsIsTaken}
             onPostMission={handlePostMission}
             onCancelMission={handleCancelMission}
             onTakeMission={handleTakeMission}

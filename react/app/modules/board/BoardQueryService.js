@@ -29,8 +29,39 @@ class BoardQueryService {
         ...mission,
         status: mission.status === Mission.getStatuses().SUBMITTED_FINISH
           ? '確認結果中'
-          : '任務執行中',
+          : '執行中',
         isControllable: mission.status === Mission.getStatuses().TAKEN
+      }));
+  }
+
+  async getMissionsIsTakenByAccountName(accountName) {
+    const getDisplayMissionStatus = (missionStatus) => {
+      switch (missionStatus) {
+        case Mission.getStatuses().TAKEN:
+          return '執行中'
+        case Mission.getStatuses().SUBMITTED_FINISH:
+          return '等待確認中'
+        case Mission.getStatuses().TAKEN:
+          return '完成'
+        default:
+          return '';
+      }
+    };
+
+    const missions = await missionsApis.getMissions();
+    return missions
+      .filter((mission) => (
+        [
+          Mission.getStatuses().TAKEN,
+          Mission.getStatuses().SUBMITTED_FINISH,
+          Mission.getStatuses().FINISHED,
+        ].includes(mission.status)
+        && mission.creator === accountName
+      ))
+      .map((mission) => ({
+        ...mission,
+        status: getDisplayMissionStatus(mission.status),
+        isControllable: mission.status === Mission.getStatuses().SUBMITTED_FINISH
       }));
   }
 }

@@ -3,11 +3,13 @@ import { useState } from 'react';
 import MissionForm from '@/app/board/components/MissionForm';
 import WaitingForTakeMissionTable from '@/app/board/components/WaitingForTakeMissionTable';
 import MissionTakenTable from '@/app/board/components/MissionTakenTable';
+import MissionIsTakenTable from '@/app/board/components/MissionIsTakenTable';
 
 const MissionSystem = ({
   account,
   waitingForTakeMissions,
   missionsTaken,
+  missionsIsTaken,
   onPostMission,
   onCancelMission,
   onTakeMission,
@@ -48,6 +50,13 @@ const MissionSystem = ({
           missions={missionsTaken}
           onAbandonMission={onAbandonMission}
           onSubmitFinishMission={onSubmitFinishMission}
+        />
+      </div>
+      <div className="mt-4">
+        <MissionIsTakenTable
+          missions={missionsIsTaken}
+          onAbandonMission={() => null}
+          onSubmitFinishMission={() => null}
         />
       </div>
     </div>
