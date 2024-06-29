@@ -1,14 +1,16 @@
 class Money {
 
   #amount;
+  #currency;
 
-  constructor(amount) {
+  constructor(amount, currency) {
     this.#amount = amount;
+    this.#currency = currency;
   }
 
-  get amount() {
-    return this.#amount;
+  get amountString() {
+    return `${this.#amount} ${this.#currency}`
   }
 }
 
-console.log(`我有 ${new Money(100).amount} TWD`);
+console.log(`我有 ${new Money(100, 'TWD').amountString}`);

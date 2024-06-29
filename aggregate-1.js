@@ -1,8 +1,10 @@
 class Player {
 
   #carriedPokemons;
+  #id;
 
-  constructor(carriedPokemons) {
+  constructor(id, carriedPokemons) {
+    this.#id = id;
     this.#carriedPokemons = carriedPokemons;
   }
 

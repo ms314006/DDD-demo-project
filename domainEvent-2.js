@@ -22,7 +22,7 @@ bill.commitSuccess();
 
 
 // 發布事件的物件內部資訊
-class BillCommittedSuccess {
+class BillCommittedSuccess extends DomainEvent {
   constructor(billId) {
     this.subject = BillCommittedSuccess;
     this.billId = billId;

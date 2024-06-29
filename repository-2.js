@@ -1,9 +1,5 @@
 const playerRepository = {
-  getDiscoveredPokemonCount: async (playerId) => {
-    const discoveredPokemons = await apis.getDiscoveredPokemonsByPlayerId(
-      playerId
-    );
-
-    return discoveredPokemons.length;
-  }
+  discoverNewPokemon: async (player, pokemon) => (
+    apis.discoverNewPokemon(player.id, pokemon.id)
+  )
 };

@@ -1,4 +1,4 @@
-class CarriedPokemons {
+class Player {
   getCarriedPokemon(carriedPokemonNo) {
     return new CarriedPokemon({
       no: carriedPokemonNo,

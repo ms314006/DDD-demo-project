@@ -1,16 +1,25 @@
-class Money {
+class ATM {
 
-  #amount;
-  #currency;
+  #money;
 
-  constructor(amount, currency) {
-    this.#amount = amount;
-    this.#currency = currency;
+  constructor() {
+    this.#money = new Money(0);
   }
 
-  get amountString() {
-    return `${this.#amount} ${this.#currency}`
+  get amount() {
+    return this.#money.amount;
+  }
+
+  withdraw(amount) {
+    if (amount > this.#money.amount) {
+      throw new Error('Insufficient balance');
+    };
+
+    this.#money = new Money(this.#money.amount - amount);
+    return new Money(amount)
+  }
+
+  deposit(money) {
+    this.#money = new Money(this.#money.amount + money.amount);
   }
 }
-
-console.log(`我有 ${new Money(100, 'TWD').amountString}`);
