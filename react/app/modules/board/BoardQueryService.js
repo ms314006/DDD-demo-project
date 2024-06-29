@@ -8,7 +8,7 @@ class BoardQueryService {
     return accounts.find(({ name }) => name === accountName);
   }
 
-  async getShowedMissionsOnBoardByAccountName(accountName) {
+  async getWaitingForTakeMissionsByAccountName(accountName) {
     const missions = await missionsApis.getMissions();
     return missions
       .filter((mission) => (
@@ -19,6 +19,12 @@ class BoardQueryService {
         isCancelable: mission.creator === accountName,
         isTakable: mission.creator !== accountName,
       }));
+  }
+
+  async getMissionsTakenByAccountName(accountName) {
+    const missions = await missionsApis.getMissions();
+    return missions
+      .filter((mission) => (mission.recipient === accountName))
   }
 }
 

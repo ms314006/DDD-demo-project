@@ -1,12 +1,14 @@
 'use client'
 import { useState } from 'react';
 import MissionForm from '@/app/board/components/MissionForm';
-import MissionTable from '@/app/board/components/MissionTable';
+import WaitingForTakeMissionTable from '@/app/board/components/WaitingForTakeMissionTable';
+import MissionTakenTable from '@/app/board/components/MissionTakenTable';
 import CommandErrorFactory from '@/app/modules/board/valueObjects/CommandErrorFactory';
 
 const MissionSystem = ({
   account,
-  missions,
+  waitingForTakeMissions,
+  missionsTaken,
   onPostMission,
   onCancelMission,
   onTakeMission,
@@ -35,7 +37,6 @@ const MissionSystem = ({
 
   return (
     <div>
-      <h1>接任務系統</h1>
       <div>
         <p>{ `使用者：${account.name}` }</p>
         <p>{ `金錢：${account.balance}` }</p>
@@ -53,10 +54,17 @@ const MissionSystem = ({
         )
       }
       <div className="mt-4">
-        <MissionTable
-          missions={missions}
+        <WaitingForTakeMissionTable
+          missions={waitingForTakeMissions}
           onCancelMission={onCancelMission}
           onTakeMission={onTakeMission}
+        />
+      </div>
+      <div className="mt-4">
+        <MissionTakenTable
+          missions={missionsTaken}
+          onAbandonMission={() => null}
+          onSubmitFinishMission={() => null}
         />
       </div>
     </div>

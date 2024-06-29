@@ -6,7 +6,8 @@ import AccountRegisterForm from '@/app/board/components/AccountRegisterForm';
 const BoardScreen = ({ getBoardViewModel }) => {
   const {
     account,
-    missions,
+    waitingForTakeMissions,
+    missionsTaken,
     handlePostMission,
     handleCancelMission,
     handleTakeMission,
@@ -15,12 +16,13 @@ const BoardScreen = ({ getBoardViewModel }) => {
 
   return (
     <div className="p-6">
-      <h1>佈告欄</h1>
+      <h1>接任務系統</h1>
       {
         account ? (
           <MissionSystem
             account={account}
-            missions={missions}
+            waitingForTakeMissions={waitingForTakeMissions}
+            missionsTaken={missionsTaken}
             onPostMission={handlePostMission}
             onCancelMission={handleCancelMission}
             onTakeMission={handleTakeMission}
