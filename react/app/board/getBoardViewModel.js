@@ -8,6 +8,7 @@ import TakeMission from "@/app/modules/board/commands/TakeMission";
 import AbandonMission from "@/app/modules/board/commands/AbandonMission";
 import SubmitFinishMission from "@/app/modules/board/commands/SubmitFinishMission";
 import FinishMission from "@/app/modules/board/commands/FinishMission";
+import RejectMission from "@/app/modules/board/commands/RejectMission";
 import RegisterAccount from "@/app/modules/board/commands/RegisterAccount";
 
 const useMissionsViewModel = (
@@ -18,6 +19,7 @@ const useMissionsViewModel = (
   abandonMission,
   submitFinishMission,
   finishMission,
+  rejectMission,
   registerAccount,
 ) => {
   const [account, setAccount] = useState(null);
@@ -75,6 +77,10 @@ const useMissionsViewModel = (
       await finishMission.execute(missionId);
       refetchViewInfo();
     },
+    handleRejectMission: async (missionId) => {
+      await rejectMission.execute(missionId);
+      refetchViewInfo();
+    },
     handleRegisterAccount: async (accountName) => {
       await registerAccount.execute(accountName);
       setAccount(await boardQueryService.getAccountByName(accountName));
@@ -92,5 +98,6 @@ export default () => useMissionsViewModel(
   new AbandonMission(new MissionRepository()),
   new SubmitFinishMission(new MissionRepository()),
   new FinishMission(new MissionRepository(), new AccountRepository()),
+  new RejectMission(new MissionRepository()),
   new RegisterAccount(new AccountRepository()),
 );

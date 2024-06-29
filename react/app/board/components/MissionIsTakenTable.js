@@ -1,6 +1,6 @@
 const MissionIsTakenTable = ({
   missions,
-  onRejectSubmittedFinishMission,
+  onRejectMission,
   onFinishMission,
 }) => {
   return (
@@ -36,7 +36,7 @@ const MissionIsTakenTable = ({
                   <button
                     className="mx-1"
                     disabled={!mission.isControllable}
-                    onClick={() => onRejectSubmittedFinishMission(mission.id)}
+                    onClick={() => onRejectMission(mission.id)}
                   >
                     拒絕
                   </button>

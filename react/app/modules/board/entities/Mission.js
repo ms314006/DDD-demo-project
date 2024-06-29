@@ -56,6 +56,10 @@ class Mission {
   commitToFinished() {
     this.status = Mission.getStatuses().FINISHED;
   }
+
+  commitToRejected() {
+    this.status = Mission.getStatuses().TAKEN;
+  }
 }
 
 export default Mission;

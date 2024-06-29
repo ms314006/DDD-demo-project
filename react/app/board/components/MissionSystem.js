@@ -16,6 +16,7 @@ const MissionSystem = ({
   onAbandonMission,
   onSubmitFinishMission,
   onFinishMission,
+  onRejectMission,
 }) => {
   const [postMissionFormVisible, setPostMissionFormVisible] = useState(false);
   const openPostMissionForm = () => setPostMissionFormVisible(true);
@@ -56,7 +57,7 @@ const MissionSystem = ({
       <div className="mt-4">
         <MissionIsTakenTable
           missions={missionsIsTaken}
-          onAbandonMission={() => null}
+          onRejectMission={onRejectMission}
           onFinishMission={onFinishMission}
         />
       </div>

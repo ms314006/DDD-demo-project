@@ -1,11 +1,5 @@
-import MissionService from "@/app/modules/board/services/MissionService";
-
 class FinishMission {
   constructor(missionsRepository, accountRepository) {
-    this.missionService = new MissionService(
-      missionsRepository,
-      accountRepository,
-    );
     this.missionsRepository = missionsRepository;
     this.accountRepository = accountRepository;
   }
