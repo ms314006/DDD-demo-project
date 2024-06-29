@@ -2,11 +2,11 @@
 import { useState } from 'react';
 import CommandErrorFactory from '@/app/modules/board/valueObjects/CommandErrorFactory';
 
-const AccountRegisterForm = ({ onRegisterAccountByName }) => {
+const AccountRegisterForm = ({ onRegisterAccount }) => {
   const [accountName, setAccountName] = useState('');
   const submitAccountName = async () => {
     try {
-      await onRegisterAccountByName(accountName);
+      await onRegisterAccount(accountName);
     } catch (e) {
       switch (e.message) {
         case CommandErrorFactory.getErrorMessages().INVALID_ACCOUNT_NAME:

@@ -3,7 +3,7 @@ import AccountNamePolicy from "@/app/modules/board/valueObjects/AccountNamePolic
 import CommandErrorFactory from "@/app/modules/board/valueObjects/CommandErrorFactory";
 import Money from "@/app/modules/board/valueObjects/Money";
 
-class RegisterAccountByName {
+class RegisterAccount {
   constructor(accountsRepository) {
     this.accountsRepository = accountsRepository;
   }
@@ -20,4 +20,4 @@ class RegisterAccountByName {
   }
 }
 
-export default RegisterAccountByName;
+export default RegisterAccount;

@@ -9,7 +9,7 @@ const BoardScreen = ({ getBoardViewModel }) => {
     missions,
     handlePostMission,
     handleCancelMission,
-    handleRegisterAccountByName,
+    handleRegisterAccount,
   } = getBoardViewModel();
 
   return (
@@ -25,7 +25,7 @@ const BoardScreen = ({ getBoardViewModel }) => {
           />
         ) : (
           <AccountRegisterForm
-            onRegisterAccountByName={handleRegisterAccountByName}
+            onRegisterAccount={handleRegisterAccount}
           />
         )
       }
