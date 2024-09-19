@@ -14,12 +14,12 @@ if (
   playerA.backpack.isExist(tradeThingOfPlayerA)
   && playerB.backpack.isExist(tradeThingOfPlayerB)
 ) {
-  playerA.backpack.takeOut(tradeThingOfPlayerA);
-  playerB.backpack.takeOut(tradeThingOfPlayerB);
+  playerA.takeOutGoodsFromBackpack(tradeThingOfPlayerA);
+  playerB.takeOutGoodsFromBackpack(tradeThingOfPlayerB);
 }
 
 // 會有個處理不存在的 Error，這裡先省略
 
 // 該做的判斷都處理完後，再將各自的東西加到對方的背包中
-playerA.backpack.add(tradeThingOfPlayerB);
-playerB.backpack.add(tradeThingOfPlayerA);
+playerA.addGoodsToBackpack(tradeThingOfPlayerB);
+playerB.addGoodsToBackpack(tradeThingOfPlayerA);
