@@ -22,6 +22,15 @@ bill.commitSuccess();
 
 
 // 發布事件的物件內部資訊
+class BillCommittedSuccess {
+  constructor(billId) {
+    this.subject = BillCommittedSuccess;
+    this.billId = billId;
+  }
+}
+
+
+// 讓所有的領域事件去繼承 DomainEvent
 class BillCommittedSuccess extends DomainEvent {
   constructor(billId) {
     this.subject = BillCommittedSuccess;
