@@ -15,4 +15,4 @@ class Player {
 
 const player = new Player(1, '神Q');
 
-person.changeName('修改過後的名字');
+player.changeName('修改過後的名字');
