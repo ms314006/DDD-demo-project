@@ -1,3 +1,12 @@
+/**
+ * FinishMission
+ * @param {Object} missionsRepository
+ * @param {function} missionsRepository.getMissionById
+ * @param {function} missionsRepository.saveMission
+ * @param {Object} accountRepository
+ * @param {function} accountRepository.getAccountByName
+ * @param {function} accountRepository.saveAccount
+ */
 class FinishMission {
   constructor(missionsRepository, accountRepository) {
     this.missionsRepository = missionsRepository;

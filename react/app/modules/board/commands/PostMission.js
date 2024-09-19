@@ -1,5 +1,13 @@
 import MissionService from "@/app/modules/board/services/MissionService";
 
+/**
+ * PostMission
+ * @param {Object} missionsRepository
+ * @param {function} missionsRepository.getNextMissionIdentity
+ * @param {function} missionsRepository.postMission
+ * @param {Object} accountRepository
+ * @param {function} accountRepository.getAccountByName
+ */
 class PostMission {
   constructor(missionsRepository, accountRepository) {
     this.missionService = new MissionService(
